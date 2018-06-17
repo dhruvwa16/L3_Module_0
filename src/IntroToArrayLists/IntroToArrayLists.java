@@ -17,19 +17,27 @@ public class IntroToArrayLists {
 		for (int i = 0; i < names.size(); i++) {
 			String s = names.get(i);
 			System.out.println(s);
+			
 		}
+		System.out.println("");
 		//4. Print all the Strings using a for-each loop
+		for (String string : names) {
+			System.out.println(string);
+		}
+		System.out.println("");
 		
 		//5. Print only the even numbered elements in the list.
 		for (int i = 0; i < names.size(); i+=2) {
 			String s = names.get(i);
 			System.out.println(s);
 		}
+		System.out.println("");
 		//6. Print all the Strings in reverse order.
 		for (int i = names.size() -1; i > -1; i--) {
 			String s = names.get(i);
 			System.out.println(s);
 		}
+		System.out.println("");
 		//7. Print only the Strings that have the letter 'e' in them.
 		for (int i = 0; i < names.size(); i++) {
 			String s = names.get(i);
@@ -38,5 +46,6 @@ public class IntroToArrayLists {
 			}
 			
 		}
+		
 	}
 }
