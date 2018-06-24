@@ -15,6 +15,7 @@ public class LogSearch implements ActionListener {
 	JButton button1;
 	JButton button2;
 	JButton button3;
+	JButton button4;
 	static HashMap<Integer, String> hi;
 	public static void main(String[] args) {
 		hi = new HashMap<Integer, String>();
@@ -29,16 +30,20 @@ public class LogSearch implements ActionListener {
 		 button1 = new JButton();
 		button2 = new JButton();
 		button3 = new JButton();
+		button4 = new JButton();
 		frame.add(panel);
 		panel.add(button1);
 		panel.add(button2);
 		panel.add(button3);
+		panel.add(button4);
 		button1.setText("Add Entry");
 		button2.setText("Search by ID");
 		button3.setText("View List");
+		button4.setText("Remove entry");
 		button1.addActionListener(this);
 		button2.addActionListener(this);
 		button3.addActionListener(this);
+		button4.addActionListener(this);
 		frame.setVisible(true);
 	}
 
@@ -50,6 +55,7 @@ public class LogSearch implements ActionListener {
 		int b = Integer.parseInt(a);
 		String c = JOptionPane.showInputDialog("Enter a name");
 		hi.put(b,c);
+		
 	}
 		if(e.getSource() == button2){
 			String d =JOptionPane.showInputDialog("Enter an ID number");
@@ -58,11 +64,33 @@ public class LogSearch implements ActionListener {
 				if(f == i) {
 					JOptionPane.showMessageDialog(null, hi.get(f));
 				 }
-			
+				else {
+					JOptionPane.showMessageDialog(null, f + "is not in the list");
+					
+				}
 		}
 	}
+		if(e.getSource() == button3) {
+			String msg = "";
+			for(Integer i : hi.keySet()){
+				msg = msg + " ID "+ i+ " name " + hi.get(i);
+			}
+			JOptionPane.showMessageDialog(null, msg);
+	}
+		if(e.getSource()== button4) {
+			String g =JOptionPane.showInputDialog("Enter an ID number");
+			int h = Integer.parseInt(g);
+			for(Integer i : hi.keySet()){
+				if(h == i) {
+					 hi.remove(h);
+				 }
+	
+}
+		}
 	}
 }
+	
+
 	/* 
 	 * Crate a HashMap of Integers for the keys and Strings for the values.
 	 * Create a GUI with three buttons. 
