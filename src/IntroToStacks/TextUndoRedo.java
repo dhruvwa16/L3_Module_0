@@ -2,16 +2,21 @@ package IntroToStacks;
 
 import java.awt.Font;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.HashMap;
+import java.util.Stack;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class TextUndoRedo {
+public class TextUndoRedo implements KeyListener {
 	JFrame frame;
 	JPanel panel;
 	JLabel label;
 	Font font;
+	Stack<String> hi = new Stack<String>();
 	public static void main(String[] args) {
 		TextUndoRedo hi = new TextUndoRedo();
 		hi.makeTextUndoRedo();
@@ -24,20 +29,24 @@ public class TextUndoRedo {
 		panel = new JPanel();
 		label = new JLabel();
 		frame.add(panel);
-		frame.add(label);
+		panel.add(label);
 		frame.setVisible(true);
-		font = new Font("Arial",Font.PLAIN,48);
-		
+		frame.addKeyListener(this);
+	    frame.pack();
 	}
 	public void keyPressed(KeyEvent b) {
 		// TODO Auto-generated method stub
-		char character = b.getKeyChar();
-		label.setText(character +"");
-		label.setFont(font);
-		System.out.print("hi");
+		char character = b.getKeyChar(); 
+		label.setText(label.getText()+character+"");
+		frame.pack();
+		if (b.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+			hi.push(character+"");
+			label.setText(label.getText());
+		}
+		}
 		
-
-	}
+		
+	
 	/* 
 	 * Create a JFrame with a JPanel and a JLabel.
 	 * 
@@ -50,5 +59,17 @@ public class TextUndoRedo {
 	 * off the Stack and added back to the JLabel.
 	 * 
 	 * */
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
