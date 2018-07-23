@@ -17,6 +17,7 @@ public class TextUndoRedo implements KeyListener {
 	JLabel label;
 	Font font;
 	Stack<String> hi = new Stack<String>();
+	Stack<String> letters = new Stack<String>();
 	public static void main(String[] args) {
 		TextUndoRedo hi = new TextUndoRedo();
 		hi.makeTextUndoRedo();
@@ -37,12 +38,33 @@ public class TextUndoRedo implements KeyListener {
 	public void keyPressed(KeyEvent b) {
 		// TODO Auto-generated method stub
 		char character = b.getKeyChar(); 
-		label.setText(label.getText()+character+"");
-		frame.pack();
 		if (b.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-			hi.push(character+"");
-			label.setText(label.getText());
+				if(!hi.isEmpty()) {
+					String a = hi.pop();
+					letters.push(a);
+					frame.pack();
+				}
 		}
+		else if (b.getKeyCode() == KeyEvent.VK_TAB) {
+					if(!letters.isEmpty()) {
+					String d = letters.pop();
+					label.setText(label.getText()+d);
+					System.out.println("hi");
+					}
+				}
+				
+		
+			else {
+				hi.push(character+"");
+				frame.pack();
+		
+		}
+		String text ="";
+		for(String s: hi) {
+			 text += s;
+		}
+		label.setText(text);
+		frame.pack();
 		}
 		
 		
