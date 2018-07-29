@@ -33,11 +33,13 @@ public class TextUndoRedo implements KeyListener {
 		panel.add(label);
 		frame.setVisible(true);
 		frame.addKeyListener(this);
+		frame.setFocusTraversalKeysEnabled(false);
 	    frame.pack();
 	}
 	public void keyPressed(KeyEvent b) {
 		// TODO Auto-generated method stub
-		char character = b.getKeyChar(); 
+		char character = b.getKeyChar();
+		
 		if (b.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
 				if(!hi.isEmpty()) {
 					String a = hi.pop();
@@ -46,13 +48,8 @@ public class TextUndoRedo implements KeyListener {
 				}
 		}
 		else if (b.getKeyCode() == KeyEvent.VK_TAB) {
-					if(!letters.isEmpty()) {
-					String d = letters.pop();
-					label.setText(label.getText()+d);
-					System.out.println("hi");
-					}
-				}
-				
+			
+		}
 		
 			else {
 				hi.push(character+"");
@@ -63,8 +60,18 @@ public class TextUndoRedo implements KeyListener {
 		for(String s: hi) {
 			 text += s;
 		}
+		if(b.getKeyCode() == KeyEvent.VK_TAB) {
+			if(letters.isEmpty()==false) {
+			String a = letters.pop();
+			hi.push(a);
+			label.setText(text+a);
+			frame.pack();
+			}
+		}
+		else {
 		label.setText(text);
 		frame.pack();
+		}
 		}
 		
 		
